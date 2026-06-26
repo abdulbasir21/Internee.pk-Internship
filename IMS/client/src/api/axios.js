@@ -7,7 +7,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api", // change this later when you deploy the backend online
+  baseURL: "https://ims-backend-fawn.vercel.app/api", 
 });
 
 // Before every request, check if a token is saved in the browser,
