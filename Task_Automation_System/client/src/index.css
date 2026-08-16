@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Type ---- */
+  --font-display: "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* ---- Ink / neutrals (cool navy-tinted grays) ---- */
+  --color-ink-900: #12162B;
+  --color-ink-700: #383E5C;
+  --color-ink-500: #6C7290;
+  --color-ink-300: #A7ABC4;
+  --color-ink-200: #DADCE9;
+  --color-ink-100: #EEEFF6;
+  --color-ink-50:  #F7F8FC;
+
+  --color-bg: #F5F6FB;
+  --color-surface: #FFFFFF;
+
+  /* ---- Brand ---- */
+  --color-brand-50:  #EEF0FF;
+  --color-brand-100: #DFE2FE;
+  --color-brand-200: #C4C8FB;
+  --color-brand-300: #A2A6F4;
+  --color-brand-400: #6C6FE8;
+  --color-brand-500: #4F46E5;
+  --color-brand-600: #4038C7;
+  --color-brand-700: #322DA0;
+
+  /* ---- Status system (pending=amber, in-progress=blue, done=green, overdue=red) ---- */
+  --color-pending: #B45309;
+  --color-pending-bg: #FEF3C7;
+  --color-pending-rail: #D97706;
+
+  --color-progress: #1D4ED8;
+  --color-progress-bg: #DBEAFE;
+  --color-progress-rail: #2563EB;
+
+  --color-done: #047857;
+  --color-done-bg: #D1FAE5;
+  --color-done-rail: #059669;
+
+  --color-overdue: #B91C1C;
+  --color-overdue-bg: #FEE2E2;
+  --color-overdue-rail: #DC2626;
+
+  /* ---- Radius / shadow ---- */
+  --radius-card: 16px;
+  --radius-control: 10px;
+
+  --shadow-card: 0 1px 2px rgba(18,22,43,0.04), 0 8px 24px -12px rgba(18,22,43,0.10);
+  --shadow-card-hover: 0 4px 10px rgba(18,22,43,0.06), 0 16px 32px -12px rgba(18,22,43,0.16);
+  --shadow-pop: 0 12px 32px -8px rgba(18,22,43,0.22);
+
+  /* ---- Motion ---- */
+  --ease-out-snap: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-ink-200);
+  }
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-ink-900);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    margin: 0;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  ::selection {
+    background: var(--color-brand-100);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  .font-mono-num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ---- Reusable keyframes for micro-interactions ---- */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+@keyframes ring-pop {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.96) translateY(-4px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.animate-fade-in-up { animation: fade-in-up 0.4s var(--ease-out-snap) both; }
+.animate-pop-in { animation: pop-in 0.18s var(--ease-out-snap) both; }
+.animate-ring-pop { animation: ring-pop 0.4s var(--ease-out-snap); }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--color-ink-100) 25%, var(--color-ink-200) 37%, var(--color-ink-100) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

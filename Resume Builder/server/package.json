@@ -1,0 +1,15 @@
+{
+  "name": "intern-resume-builder-backend",
+  "version": "1.0.0",
+  "description": "Stateless Express + PDFKit backend that turns resume JSON into a downloadable PDF",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "pdfkit": "^0.15.0"
+  }
+}
