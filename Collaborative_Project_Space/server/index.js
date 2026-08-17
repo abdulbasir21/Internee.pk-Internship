@@ -9,6 +9,7 @@ const authRoutes = require('./routes/authRoutes');
 const projectRoutes = require('./routes/projectRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const milestoneRoutes = require('./routes/milestoneRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/projects', projectRoutes);
 // taskRoutes and milestoneRoutes define their own full paths
 // (/projects/:id/tasks, /tasks/:id, /projects/:id/milestones) so they're
